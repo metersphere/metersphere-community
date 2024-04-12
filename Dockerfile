@@ -12,7 +12,6 @@ COPY --from=result-hub /app /result-hub
 
 COPY shells /shells
 RUN chmod +x /shells/comm.sh && /shells/comm.sh
-RUN mv /task-runner/lib/api-test-*.jar /task-runner/lib/api-test.jar 
 
 #
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre
