@@ -1,2 +1,8 @@
 .idea/
 .DS_Store
+data/mysql
+data/redis
+data/minio
+logs/metersphere
+logs/task-runner
+logs/result-hub

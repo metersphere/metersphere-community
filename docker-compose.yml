@@ -1,33 +1,33 @@
 version: "3"
 services:
   metersphere:
-    image: metersphere/metersphere-community:v3.x
+    image: metersphere/metersphere-all:v3.x
     container_name: metersphere
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://${MS_MYSQL_HOST}:${MS_MYSQL_PORT}/${MS_MYSQL_DB}?autoReconnect=false&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&useSSL=false&sessionVariables=sql_mode=%27STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION%27
-      SPRING_DATASOURCE_USERNAME: ${MS_MYSQL_USER}
-      SPRING_DATASOURCE_PASSWORD: ${MS_MYSQL_PASSWORD}
-      KAFKA_BOOTSTRAP-SERVERS: ${MS_KAFKA_HOST}:${MS_KAFKA_PORT}
+      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/metersphere?autoReconnect=false&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&useSSL=false&sessionVariables=sql_mode=%27STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION%27
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: '111111'
+      KAFKA_BOOTSTRAP-SERVERS: 127.0.0.1:9092
       JMETER_IMAGE: ${MS_JMETER_IMAGE}
       SPRING_SESSION_TIMEOUT: '30d'
-      REDIS_HOST: ${MS_REDIS_HOST}
-      REDIS_PORT: ${MS_REDIS_PORT}
-      REDIS_PASSWORD: ${MS_REDIS_PASSWORD}
-      MINIO_ENDPOINT: ${MS_MINIO_ENDPOINT}
-      MINIO_ACCESS-KEY: ${MS_MINIO_ACCESS_KEY}
-      MINIO_SECRET-KEY: ${MS_MINIO_SECRET_KEY}
+      REDIS_HOST: '127.0.0.1'
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ''
+      MINIO_ENDPOINT: 'http://127.0.0.1:9000'
+      MINIO_ACCESS-KEY: minioadmin
+      MINIO_SECRET-KEY: minioadmin
+      MYSQL_DATABASE: metersphere
     extra_hosts:
       - "task-runner:127.0.0.1"
     entrypoint:
       - sh
       - -c
       - |
-        node_exporter --path.procfs=/host/proc --path.sysfs=/host/sys &
-        sed -i "s/:101:/:${MS_DOCKER_GID:-101}:/g" /etc/group
         /shells/start.sh
     ports:
-      - ${MS_SERVER_PORT}:8081
-      - ${MS_TASK_RUNNER_PORT}:6000
+      - 8081:8081
+      - 9000:9000
+      - 9001:9001
     healthcheck:
       test: [ "CMD", "nc", "-zv", "localhost", "8081" ]
       interval: 6s
@@ -35,6 +35,13 @@ services:
       retries: 50
     restart: always
     volumes:
+      - ./shells:/shells
       - ./conf:/opt/metersphere/conf
       - ./logs:/opt/metersphere/logs
+      - ./conf/kafka/config:/mnt/shared/config
+      - ./conf/mysql/my.cnf:/etc/my.cnf.d/mariadb-server.cnf
+      - ./data/minio:/minio-data
+      - ./data/mysql:/var/lib/mysql
+      - ./data/redis:/redis-data
+      
      
