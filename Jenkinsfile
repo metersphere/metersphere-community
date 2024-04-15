@@ -3,7 +3,7 @@
 pipeline {
     agent {
         node {
-            label 'metersphere'
+            label 'meterspherex'
         }
     }
     triggers {
