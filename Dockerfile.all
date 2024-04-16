@@ -35,5 +35,5 @@ COPY shells /shells
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk add --no-cache libc6-compat mysql mysql-client redis minio && chmod +x /shells/*.sh
 
-ENTRYPOINT ["sh", "/shells/start.sh"]
+ENTRYPOINT ["sh", "/shells/start-all.sh"]
 

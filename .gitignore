@@ -1,8 +1,8 @@
 .idea/
 .DS_Store
-data/mysql
-data/redis
-data/minio
-logs/metersphere
-logs/task-runner
-logs/result-hub
+mount/data/mysql
+mount/data/redis
+mount/data/minio
+mount/logs/metersphere
+mount/logs/task-runner
+mount/logs/result-hub

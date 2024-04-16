@@ -19,11 +19,6 @@ services:
       MYSQL_DATABASE: metersphere
     extra_hosts:
       - "task-runner:127.0.0.1"
-    entrypoint:
-      - sh
-      - -c
-      - |
-        /shells/start.sh
     ports:
       - 8081:8081
       - 9000:9000
@@ -35,13 +30,6 @@ services:
       retries: 50
     restart: always
     volumes:
-      - ./shells:/shells
-      - ./conf:/opt/metersphere/conf
-      - ./logs:/opt/metersphere/logs
-      - ./conf/kafka/config:/mnt/shared/config
-      - ./conf/mysql/my.cnf:/etc/my.cnf.d/mariadb-server.cnf
-      - ./data/minio:/minio-data
-      - ./data/mysql:/var/lib/mysql
-      - ./data/redis:/redis-data
+      - ./mount:/opt/metersphere
       
      
