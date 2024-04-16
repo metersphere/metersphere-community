@@ -1,7 +1,7 @@
 version: "3"
 services:
   metersphere:
-    image: metersphere/metersphere-all:v3.x
+    image: metersphere/metersphere-ce-allinone:v3.x
     container_name: metersphere
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/metersphere?autoReconnect=false&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&useSSL=false&sessionVariables=sql_mode=%27STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION%27
