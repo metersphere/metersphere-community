@@ -20,8 +20,6 @@ services:
       - "task-runner:127.0.0.1"
     ports:
       - 8081:8081
-      - 9000:9000
-      - 9001:9001
     healthcheck:
       test: [ "CMD", "nc", "-zv", "localhost", "8081" ]
       interval: 6s
