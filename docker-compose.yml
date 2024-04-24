@@ -3,19 +3,6 @@ services:
   metersphere:
     image: metersphere/metersphere-ce-allinone:v3.x
     container_name: metersphere
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/metersphere?autoReconnect=false&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&useSSL=false&sessionVariables=sql_mode=%27STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION%27
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: '111111'
-      KAFKA_BOOTSTRAP-SERVERS: 127.0.0.1:9092
-      SPRING_SESSION_TIMEOUT: '30d'
-      REDIS_HOST: '127.0.0.1'
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: ''
-      MINIO_ENDPOINT: 'http://127.0.0.1:9000'
-      MINIO_ACCESS-KEY: minioadmin
-      MINIO_SECRET-KEY: minioadmin
-      MYSQL_DATABASE: metersphere
     extra_hosts:
       - "task-runner:127.0.0.1"
     ports:
@@ -26,7 +13,4 @@ services:
       timeout: 10s
       retries: 50
     restart: always
-    volumes:
-      - ./mount:/opt/metersphere
-      
-     
+
