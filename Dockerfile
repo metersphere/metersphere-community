@@ -22,7 +22,6 @@ COPY --from=builder /task-runner /task-runner
 COPY --from=builder /result-hub /result-hub
 
 COPY --from=task-runner /opt/jmeter /opt/jmeter
-COPY --from=task-runner /usr/bin/node_exporter /usr/bin/node_exporter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
 ENV AB_OFF=true
