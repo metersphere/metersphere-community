@@ -29,6 +29,7 @@ if [[ "${miniohost}" == *"127.0.0.1"* ]]; then
     /shells/wait-for-it.sh 127.0.0.1:9000 --timeout=120 --strict
 fi
 
+chmod -R 777 /opt/metersphere/logs
 
 sh /shells/metersphere.sh &
 sh /shells/task-runner.sh &
