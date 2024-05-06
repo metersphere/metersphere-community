@@ -1,7 +1,6 @@
 ARG IMG_TAG=v3.x
-ARG PKG_TYPE=community
 
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG}-${PKG_TYPE} as metersphere
+FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG}-community as metersphere
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:${IMG_TAG} as task-runner
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/result-hub:${IMG_TAG} as result-hub
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre as builder
