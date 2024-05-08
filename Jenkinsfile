@@ -32,7 +32,6 @@ pipeline {
                 anyOf {
                     tag pattern: "^v\\d+\\.\\d+\\.\\d+-alpha\$", comparator: "REGEXP";
                     tag pattern: "^v\\d+\\.\\d+\\.\\d+-beta\$", comparator: "REGEXP";
-                    tag pattern: "^v\\d+\\.\\d+\\.\\d+-rc.*\$", comparator: "REGEXP";
 
                     tag pattern: "^v\\d+\\.\\d+\\.\\d+\$", comparator: "REGEXP";
                     tag pattern: "^v\\d+\\.\\d+\\.\\d+-lts\$", comparator: "REGEXP";
