@@ -29,6 +29,11 @@ if [[ "${miniohost}" == *"127.0.0.1"* ]]; then
     /shells/wait-for-it.sh 127.0.0.1:9000 --timeout=120 --strict
 fi
 
+taskrunner=$(cat /etc/hosts | grep 'task-runner')
+if [[ ! "${taskrunner}" == *"127.0.0.1"* ]]; then
+    echo '127.0.0.1 task-runner' >> /etc/hosts
+fi
+
 chmod -R 777 /opt/metersphere/logs
 
 sh /shells/metersphere.sh &
