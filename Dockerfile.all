@@ -35,7 +35,7 @@ COPY mount /opt/metersphere
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk add --no-cache libc6-compat mysql mysql-client redis minio && chmod +x /shells/*.sh
 
-VOLUME [ "/opt/metersphere/data", "/opt/metersphere/logs" ]
+VOLUME [ "/opt/metersphere/data", "/opt/metersphere/logs", "/opt/metersphere/conf" ]
 
 ENTRYPOINT ["sh", "/shells/start-all.sh"]
 
