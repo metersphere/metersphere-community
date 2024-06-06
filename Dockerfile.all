@@ -14,7 +14,7 @@ COPY shells /shells
 RUN chmod +x /shells/comm.sh && /shells/comm.sh
 
 #
-FROM registry.fit2cloud.com/metersphere/alpine-openjdk21-jre
+FROM registry.fit2cloud.com/metersphere/standalone-base
 
 COPY --from=builder /standalone /standalone  
 COPY --from=builder /metersphere /metersphere
@@ -32,8 +32,7 @@ ENV JAVA_OPTIONS="-Dfile.encoding=utf-8 -Djava.awt.headless=true --add-opens jav
 
 COPY shells /shells
 COPY mount /opt/metersphere
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-RUN apk add --no-cache libc6-compat mysql mysql-client redis minio && chmod +x /shells/*.sh
+RUN chmod +x /shells/*.sh
 
 VOLUME [ "/opt/metersphere/data", "/opt/metersphere/logs", "/opt/metersphere/conf" ]
 
