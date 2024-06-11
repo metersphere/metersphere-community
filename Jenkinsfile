@@ -32,7 +32,6 @@ pipeline {
                 sh '''#!/bin/bash -xe
                 docker --config /home/metersphere/.docker buildx build --no-cache --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} \
                  -t ${IMAGE_PREFIX}/metersphere-ce-allinone:\${TAG_NAME:-\$BRANCH_NAME} \
-                 -t metersphere/metersphere-ce-allinone:\${TAG_NAME:-\$BRANCH_NAME} \
                  -f Dockerfile.all --platform linux/amd64,linux/arm64 . --push
                 '''
             }
@@ -51,7 +50,6 @@ pipeline {
                 sh '''#!/bin/bash -xe
                 docker --config /home/metersphere/.docker buildx build --no-cache --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} \
                  -t ${IMAGE_PREFIX}/metersphere-ce-allinone:latest \
-                 -t metersphere/metersphere-ce-allinone:latest \
                  -f Dockerfile.all --platform linux/amd64,linux/arm64 . --push
                 '''
             }
