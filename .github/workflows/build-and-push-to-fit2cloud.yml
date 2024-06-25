@@ -3,10 +3,10 @@ name: build-and-push-to-fit2cloud
 on:
   push:
     branches:
-      - v3.x
+      - v3.*
   pull_request:
     branches:
-      - v3.x
+      - v3.*
   workflow_dispatch:
 
 jobs:

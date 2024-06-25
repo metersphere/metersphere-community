@@ -3,7 +3,7 @@ name: build-and-push-to-dockerhub
 on:
   push:
     branches:
-      - v3.x
+      - v3.*
   workflow_dispatch:
 
 jobs:
