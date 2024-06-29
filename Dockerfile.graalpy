@@ -6,7 +6,7 @@ RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN source /app/graalenv/bin/activate && \
-    pip install PyNaCl==1.5.0 bcrypt==4.0.1 cffi==1.15.1 cryptography==41.0.3 paramiko==3.4.0 pycparser==2.22 six==1.16.0
+    pip install paramiko
 
 
 RUN mkdir -p /usr/local/lib/python3.10/site-packages && \
