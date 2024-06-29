@@ -1,0 +1,10 @@
+FROM ghcr.io/graalvm/graalpy-community:24.0.1
+
+RUN graalpy -m venv .venv && cd .venv && \
+    source bin/activate && \
+    pip install paramiko
+
+RUN mkdir -p /usr/local/lib/python3.10/site-packages && \
+    cp -r /root/.venv/lib/python3.10/site-packages/* /usr/local/lib/python3.10/site-packages
+
+VOLUME ["/usr/local/lib/python3.10/site-packages"]
