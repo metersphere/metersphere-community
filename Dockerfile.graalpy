@@ -6,10 +6,10 @@ RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN source /app/graalenv/bin/activate && \
-    pip install paramiko
+    pip install paramiko requests pinyin
 
 
 RUN mkdir -p /usr/local/lib/python3.10/site-packages && \
     cp -r /app/graalenv/lib/python3.10/site-packages/* /usr/local/lib/python3.10/site-packages
 
-VOLUME ["/usr/local/lib/python3.10/site-packages"]
+VOLUME ["/usr/local/lib/python3.10/site-packages", "/app/graalenv", "/opt/graalpy-24.0.1/bin/graalpy"]
