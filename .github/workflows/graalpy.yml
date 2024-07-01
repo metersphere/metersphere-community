@@ -1,4 +1,4 @@
-name: python-push-to-fit2cloud
+name: graalpy-push-to-fit2cloud
 
 on:
   push:
