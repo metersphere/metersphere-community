@@ -1,9 +1,6 @@
 FROM ghcr.io/graalvm/graalpy-community:24.0.1
 
-RUN yum install -y libffi-devel
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-
-ENV PATH="/root/.cargo/bin:${PATH}"
+RUN yum -y install libffi-devel rust cargo && yum clean all
 
 RUN source /app/graalenv/bin/activate && \
     pip install paramiko requests pinyin
