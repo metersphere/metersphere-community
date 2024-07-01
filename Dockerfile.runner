@@ -1,0 +1,19 @@
+ARG IMG_TAG=v3.x
+
+FROM registry.fit2cloud.com/metersphere/metersphere-ce:${IMG_TAG} as task-runner
+
+
+FROM registry.fit2cloud.com/metersphere/graalpy-community:3.10
+
+COPY --from=task-runner /metersphere /metersphere
+COPY --from=task-runner /task-runner /task-runner
+COPY --from=task-runner /result-hub  /result-hub
+COPY --from=task-runner /shells      /shells
+COPY --from=task-runner /standalone  /standalone
+COPY --from=task-runner /deployments /deployments
+COPY --from=task-runner /opt/jmeter  /opt/jmeter
+
+RUN yum install -y java-21-openjdk
+
+RUN useradd -m appuser
+RUN echo 'appuser:appuser' | chpasswd
