@@ -1,11 +1,11 @@
-name: build-and-push-to-fit2cloud
+name: python-push-to-fit2cloud
 
 on:
   push:
     branches:
-      - v3.*
+      - v3.x
     paths:
-      - "Dockerfile.base"
+      - "Dockerfile.graalpy"
   workflow_dispatch:
 
 jobs:
@@ -17,9 +17,9 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          DOCKER_IMAGE=registry.fit2cloud.com/metersphere/standalone-base
+          DOCKER_IMAGE=registry.fit2cloud.com/metersphere/graalpy-community
           DOCKER_PLATFORMS=linux/amd64,linux/arm64
-          TAG_NAME=latest
+          TAG_NAME=3.10
           DOCKER_IMAGE_TAGS="--tag ${DOCKER_IMAGE}:${TAG_NAME}"
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${TAG_NAME}
@@ -28,7 +28,7 @@ jobs:
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
             --build-arg --no-cache \
             --build-arg VCS_REF=${GITHUB_SHA::8} \
-            -f Dockerfile.base \
+            -f Dockerfile.graalpy \
             ${DOCKER_IMAGE_TAGS} .
       - name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v3
