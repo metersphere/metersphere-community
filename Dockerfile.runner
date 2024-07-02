@@ -3,7 +3,7 @@ ARG IMG_TAG=v3.x
 FROM registry.fit2cloud.com/metersphere/metersphere-ce:${IMG_TAG} as task-runner
 
 
-FROM registry.fit2cloud.com/metersphere/graalpy-community:3.10
+FROM ghcr.io/graalvm/graalpy-community:24.0.1
 
 COPY --from=task-runner /metersphere /metersphere
 COPY --from=task-runner /task-runner /task-runner
