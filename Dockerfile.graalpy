@@ -3,6 +3,6 @@ FROM ghcr.io/graalvm/graalpy-community:24.0.1
 RUN yum -y install libffi-devel rust cargo && yum clean all
 
 RUN source /app/graalenv/bin/activate && \
-    pip install paramiko requests pinyin
+    pip install requests pinyin
 
 VOLUME ["/app/graalenv", "/opt/graalpy-24.0.1"]
