@@ -28,7 +28,7 @@ ENV MS_PACKAGE_TYPE=community
 ENV JAVA_OPTIONS="-Dfile.encoding=utf-8 -Djava.awt.headless=true --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
 
 COPY shells /shells
-RUN ln -s /opt/java/openjdk/bin/java /usr/bin/java && chmod +x /shells/*.sh
+RUN chmod +x /shells/*.sh
 
 ENTRYPOINT ["sh", "/shells/start.sh"]
 
