@@ -13,7 +13,7 @@ COPY shells /shells
 RUN chmod +x /shells/comm.sh && /shells/comm.sh
 
 #
-FROM registry.fit2cloud.com/metersphere/openjdk21-jre-jammy
+FROM registry.fit2cloud.com/metersphere/alpine-openjdk21-jre
 
 COPY --from=builder /standalone /standalone  
 COPY --from=builder /metersphere /metersphere
@@ -28,7 +28,8 @@ ENV MS_PACKAGE_TYPE=enterprise
 ENV JAVA_OPTIONS="-Dfile.encoding=utf-8 -Djava.awt.headless=true --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
 
 COPY shells /shells
-RUN chmod +x /shells/*.sh
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN apk add libc6-compat && chmod +x /shells/*.sh
 
 ENTRYPOINT ["sh", "/shells/start.sh"]
 
