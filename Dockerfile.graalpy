@@ -1,8 +1,8 @@
-FROM ghcr.io/graalvm/graalpy-community:24.0.1
+FROM ghcr.io/graalvm/graalpy-community:24.0.2
 
 RUN yum -y install libffi-devel rust cargo && yum clean all
 
 RUN source /app/graalenv/bin/activate && \
     pip install requests pinyin
 
-VOLUME ["/app/graalenv", "/opt/graalpy-24.0.1"]
+VOLUME ["/app/graalenv", "/opt/graalpy-24.0.2"]
