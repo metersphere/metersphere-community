@@ -1,6 +1,6 @@
 ARG IMG_TAG=v3.x
 
-FROM registry.fit2cloud.com/metersphere/metersphere:${IMG_TAG}-community as metersphere
+FROM registry.fit2cloud.com/metersphere/metersphere:${IMG_TAG} as metersphere
 FROM registry.fit2cloud.com/metersphere/task-runner:${IMG_TAG} as task-runner
 FROM registry.fit2cloud.com/metersphere/result-hub:${IMG_TAG} as result-hub
 FROM registry.fit2cloud.com/metersphere/kafka:3.7.0 as kafka
