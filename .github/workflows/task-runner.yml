@@ -1,10 +1,13 @@
 name: runner-push-to-fit2cloud
 
 on:
-  release:
-    types:
-      - published
   workflow_dispatch:
+    inputs:
+      dockerImageTag:
+        description: 'Docker Image Tag'
+        default: 'v3.x'
+        required: true
+
 
 jobs:
   build-and-push:
@@ -17,7 +20,7 @@ jobs:
         run: |
           DOCKER_IMAGE=registry.fit2cloud.com/metersphere/task-runner
           DOCKER_PLATFORMS=linux/amd64,linux/arm64
-          TAG_NAME=${{ github.event.release.tag_name }}-python
+          TAG_NAME=${{ github.event.inputs.dockerImageTag }}-python
           DOCKER_IMAGE_TAGS="--tag ${DOCKER_IMAGE}:${TAG_NAME}"
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${TAG_NAME}
